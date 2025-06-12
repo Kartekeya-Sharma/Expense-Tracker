@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #ff69b4;
+  --primary-dark: #ff1493;
+  --secondary: #ffb6c1;
+  --background: linear-gradient(135deg, #181824 0%, #23243a 100%);
+  --surface: rgba(36, 37, 50, 0.92);
+  --surface-glass: rgba(36, 37, 50, 0.7);
+  --surface-light: rgba(255, 255, 255, 0.04);
+  --text: #fff;
+  --text-secondary: #e0e0e0;
+  --error: #ff6b6b;
+  --success: #4ecdc4;
+  --warning: #ffd93d;
+  --gradient-start: #ff69b4;
+  --gradient-end: #ffb6c1;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.1),
+    0 1.5px 8px rgba(0, 0, 0, 0.18);
+  border: 1.5px solid var(--surface-light);
+  backdrop-filter: blur(16px) saturate(180%);
+  animation: cardAppear 0.6s cubic-bezier(0.4, 2, 0.6, 1);
+  transition: box-shadow 0.3s, border 0.3s, background 0.3s;
+}
+
+@keyframes cardAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card:hover {
+  box-shadow: 0 20px 40px rgba(255, 105, 180, 0.18),
+    0 4px 24px rgba(0, 0, 0, 0.22);
+  border-color: var(--primary);
+  background: var(--surface-glass);
+}
+
+.input,
+.select {
+  background: var(--surface-light);
+  border: 2px solid var(--surface);
+  color: var(--text);
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 4px rgba(255, 105, 180, 0.04);
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.input:focus,
+.select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.18);
+  background: #23243a;
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.5em;
+  padding-right: 2.5rem;
+}
+.select option {
+  background: #23243a;
+  color: var(--text);
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.18);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid var(--primary-dark);
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s, transform 0.1s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.btn:hover,
+.btn:focus {
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+  box-shadow: 0 6px 24px rgba(255, 105, 180, 0.28);
+  border-color: var(--primary);
+  outline: none;
+  transform: scale(1.03);
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.tab-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background: var(--surface-light);
+  border-radius: 1rem;
+  border: 1.5px solid var(--primary-dark);
+}
+.tab {
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.1s;
+}
+.tab:hover,
+.tab:focus {
+  color: var(--primary);
+  background: rgba(255, 105, 180, 0.08);
+  border-color: var(--primary-dark);
+  outline: none;
+  transform: scale(1.04);
+}
+.tab.active {
+  color: #fff;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.18);
+  border: 2px solid var(--primary);
+  transform: scale(1.08);
+}
+
+.transaction-item {
+  background: var(--surface-light);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--primary);
+  border: 1.5px solid var(--primary-dark);
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.08);
+  animation: slideIn 0.5s cubic-bezier(0.4, 2, 0.6, 1);
+  transition: box-shadow 0.2s, border 0.2s, background 0.2s, transform 0.1s;
+}
+.transaction-item:hover {
+  transform: translateX(8px) scale(1.01);
+  border-color: var(--primary);
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.18);
+}
+.transaction-item.expense {
+  border-left-color: var(--error);
+  background: linear-gradient(to right, rgba(255, 107, 107, 0.12), transparent);
+}
+.transaction-item.income {
+  border-left-color: var(--success);
+  background: linear-gradient(to right, rgba(78, 205, 196, 0.12), transparent);
+}
+
+.summary-card {
+  background: var(--surface-light);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1.5px solid var(--primary-dark);
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.08);
+  animation: fadeIn 0.6s cubic-bezier(0.4, 2, 0.6, 1);
+  transition: box-shadow 0.2s, border 0.2s, background 0.2s, transform 0.1s;
+}
+.summary-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--primary);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.18);
+}
+.summary-card.income {
+  border-top: 4px solid var(--success);
+  background: linear-gradient(to bottom, rgba(78, 205, 196, 0.12), transparent);
+}
+.summary-card.expense {
+  border-top: 4px solid var(--error);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 107, 107, 0.12),
+    transparent
+  );
+}
+.summary-card.balance {
+  border-top: 4px solid var(--primary);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 105, 180, 0.12),
+    transparent
+  );
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.text-gradient {
+  background: linear-gradient(
+    45deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 3s ease infinite;
+  background-size: 200% 200%;
+}
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 105, 180, 0.2),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+  border: 2px solid var(--surface);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
